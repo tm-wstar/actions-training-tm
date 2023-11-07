@@ -1,0 +1,20 @@
+name: Hello World Docker Actoin
+
+on:
+  push:
+    paths:
+      - 'action.yml'
+      - 'Dockerfile'
+      - 'entrypoint.sh'
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    name: Run Docker Action
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-docker-action
+    - name: Run the Docker image
+      run: docker run --rm my-docker-action "World"
