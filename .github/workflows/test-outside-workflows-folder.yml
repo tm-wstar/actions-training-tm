@@ -14,3 +14,21 @@ on:
         description: 'Environment to deploy to'
         type: environment
         required: true
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Output event name
+      run: echo "The event that triggered the workflow is ${{ github.event_name }}."
+
+    - name: Output branch name
+      run: echo "The current branch is ${{ github.ref_name }}."
+
+    - name: List all files in the repository
+      run: |
+        echo "Listing all files in the repository:"
+        ls -R
